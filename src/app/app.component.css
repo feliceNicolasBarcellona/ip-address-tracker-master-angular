@@ -34,12 +34,6 @@ main {
   padding: 36px 0;
 }
 
-.map{
-  border: 1px dashed orange;
-  height: auto;
-  width: 100%;
-}
-
 @media only screen and (max-width: 768px) {
   main {
     max-width: 20.8333rem;
