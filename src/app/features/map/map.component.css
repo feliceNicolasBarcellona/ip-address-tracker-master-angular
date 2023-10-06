@@ -1,0 +1,10 @@
+.map-layout {
+  width: 100%;
+  height: 60.5%;
+}
+
+@media only screen and (max-width: 768px) {
+  .map-layout{
+    height: 62%;
+  }
+}

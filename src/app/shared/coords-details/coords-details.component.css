@@ -1,0 +1,40 @@
+.coords-details {
+  height: 100%;
+  width: 277.5px;
+  padding: 0px 0px 0px 32px;
+}
+
+.label {
+  color: hsl(0, 0%, 59%);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1.9px;
+}
+
+.value {
+  font-size: 25.69px;
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+@media only screen and (max-width: 768px) {
+  .coords-details {
+    width: 100%;
+    height: 68px;
+    padding: 5px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .label {
+    font-size: 9.4px;
+    margin-top: 0;
+  }
+
+  .value {
+    margin-top: 0px;
+    font-size: 20px;
+  }
+}
