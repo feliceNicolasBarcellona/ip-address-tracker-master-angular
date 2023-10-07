@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IPInfo } from './model/ip-info';
+import { IpInfoService } from './core/ip-info.service';
 
 @Component({
   selector: 'app-root',
@@ -8,43 +9,28 @@ import { IPInfo } from './model/ip-info';
 })
 export class AppComponent implements OnInit {
   zoom: number = 20;
-  location: number[] = [];
-  ipOrDomain: string | null = null;
+  location: number[] = [0, 0];
+  ipOrDomain: string | null = '';
 
-  result: IPInfo[] = [{
-    ip: "101.56.162.221",
-    location: {
-      country: "IT",
-      region: "Sicilia",
-      city: "Santo Stefano Quisquina",
-      lat: 37.62606,
-      lng: 13.48976,
-      postalCode: "",
-      timezone: "+02:00",
-      geonameId: 2523247,
-    },
-    as: {
-      asn: 210278,
-      name: "SKYIT-BB",
-      route: "101.56.128.0\/18",
-      domain: "sky.uk",
-      type: "Cable\/DSL\/ISP",
-    },
-    isp: "Sky Italia srl",
-    proxy: {
-      proxy: false,
-      vpn: false,
-      tor: false,
-    },
-  }];
+  result: IPInfo | null = null;
 
-  ngOnInit(): void {
-    if (this.result.length > 0) {
-      const lat = this.result[0].location.lat;
-      const lng = this.result[0].location.lng;
+  constructor(private IpInfoService: IpInfoService) {}
 
-      this.location = [lat, lng];
-    }
+  ngOnInit() {
+    this.IpInfoService.getIpInfo().subscribe(
+      (res: IPInfo) => {
+        this.result = res;
+
+        if (res.location) {
+          const lat = res.location.lat;
+          const lng = res.location.lng;
+          this.location = [lat, lng];
+        }
+      },
+      (error) => {
+        console.error('Errore nella chiamata HTTP', error);
+      }
+    );
   }
 
   getIpOrDomain(ipOrDomain: string) {

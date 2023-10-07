@@ -3,28 +3,26 @@
     <p class="title">IP Address Tracker</p>
     <app-search-bar (search)="getIpOrDomain($event)"></app-search-bar>
   </div>
-  <div *ngIf="result && result.length > 0">
-    <div class="coords-container" *ngFor="let item of result">
-      <app-coords-details
-        label="IP Address"
-        [value]="item.ip"
-      ></app-coords-details>
-      <app-coords-details
-        label="Location"
-        [value]="
-          item.location.city +
-          ', ' +
-          item.location.country +
-          ' ' +
-          item.location.postalCode
-        "
-      ></app-coords-details>
-      <app-coords-details
-        label="Timezone"
-        [value]="'UTC ' + item.location.timezone"
-      ></app-coords-details>
-      <app-coords-details label="ISP" [value]="item.isp"></app-coords-details>
-    </div>
+  <div class="coords-container">
+    <app-coords-details
+      label="IP Address"
+      [value]="result?.ip"
+    ></app-coords-details>
+    <app-coords-details
+      label="Location"
+      [value]="
+        result?.location?.city +
+        ', ' +
+        result?.location?.country +
+        ' ' +
+        result?.location?.postalCode
+      "
+    ></app-coords-details>
+    <app-coords-details
+      label="Timezone"
+      [value]="'UTC ' + result?.location?.timezone"
+    ></app-coords-details>
+    <app-coords-details label="ISP" [value]="result?.isp"></app-coords-details>
   </div>
   <app-map [coords]="location" [zoom]="zoom"></app-map>
 </main>
