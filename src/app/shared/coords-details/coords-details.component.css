@@ -43,6 +43,7 @@
 }
 
 .value {
+  color: var(--very-dark-gray);
   font-size: 1.3333333333333333vw;
   font-weight: 500;
   margin-top: 13px;
