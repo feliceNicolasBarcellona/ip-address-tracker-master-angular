@@ -12,8 +12,7 @@ export class AppComponent implements OnInit {
   location: number[] = [0, 0];
   ipOrDomain: string | null = '';
   searchedIp: string = '';
-  error: string | null = null
-
+  error: string | null = null;
   result: IPInfo | null = null;
 
   constructor(private IpInfoService: IpInfoService) {}
