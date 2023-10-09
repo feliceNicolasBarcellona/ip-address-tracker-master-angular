@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 })
 export class SearchBarComponent {
   @Output() search = new EventEmitter<string>();
+  @Input() iconArrow:  string | null = null
 
   searchHandler(f: NgForm){
     this.search.emit(f.value.search)

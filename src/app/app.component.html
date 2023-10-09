@@ -1,7 +1,7 @@
 <main>
   <div class="pattern-bg">
     <p class="title">IP Address Tracker</p>
-    <app-search-bar (search)="getIpOrDomain($event)"></app-search-bar>
+    <app-search-bar (search)="getIpOrDomain($event)" [iconArrow]="iconArrow"></app-search-bar>
   </div>
   <app-coords-details [result]="result" [error]="error"></app-coords-details>
   <div class="map-container">

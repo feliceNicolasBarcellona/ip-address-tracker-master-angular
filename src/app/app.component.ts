@@ -10,10 +10,12 @@ import { IpInfoService } from './core/ip-info.service';
 export class AppComponent implements OnInit {
   zoom: number = 17;
   location: number[] = [0, 0];
+
   ipOrDomain: string | null = '';
   searchedIp: string = '';
   error: string | null = null;
   result: IPInfo | null = null;
+  iconArrow: string | null = 'assets/icon-arrow.svg'
 
   constructor(private IpInfoService: IpInfoService) {}
 
