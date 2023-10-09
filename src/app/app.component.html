@@ -3,37 +3,7 @@
     <p class="title">IP Address Tracker</p>
     <app-search-bar (search)="getIpOrDomain($event)"></app-search-bar>
   </div>
-  <div class="coords-container">
-    <ul>
-      <li>
-        <p class="label">IP Address</p>
-        <p *ngIf="!result && !error" class="loading">Loading...</p>
-        <p *ngIf="!result && error">{{""}}</p>
-        <p *ngIf="result" class="value">{{ result.ip }}</p>
-      </li>
-      <li>
-        <p class="label">Location</p>
-        <p *ngIf="!result && !error" class="loading">Loading...</p>
-        <p *ngIf="!result && error">{{""}}</p>
-        <p *ngIf="result" class="value">
-          {{ result.location.city }}, {{ result.location.country }}
-          {{ result.location.postalCode }}
-        </p>
-      </li>
-      <li>
-        <p class="label">Timezone</p>
-        <p *ngIf="!result && !error" class="loading">Loading...</p>
-        <p *ngIf="!result && error">{{""}}</p>
-        <p *ngIf="result" class="value">UTC {{ result.location.timezone }}</p>
-      </li>
-      <li>
-        <p class="label">Isp</p>
-        <p *ngIf="!result && !error" class="loading">Loading...</p>
-        <p *ngIf="!result && error">{{""}}</p>
-        <p *ngIf="result" class="value">{{ result.isp }}</p>
-      </li>
-    </ul>
-  </div>
+  <app-coords-details [result]="result" [error]="error"></app-coords-details>
   <div class="map-container">
     <p *ngIf="!result && !error" class="loading">Loading...</p>
     <p *ngIf="!result && error" class="httpError">{{error}}</p>

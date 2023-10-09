@@ -10,6 +10,6 @@ export class SearchBarComponent {
   @Output() search = new EventEmitter<string>();
 
   searchHandler(f: NgForm){
-    this.search.emit(f.value)
+    this.search.emit(f.value.search)
   }
 }

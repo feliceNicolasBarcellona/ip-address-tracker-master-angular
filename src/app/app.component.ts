@@ -19,25 +19,46 @@ export class AppComponent implements OnInit {
   constructor(private IpInfoService: IpInfoService) {}
 
   ngOnInit() {
-    this.IpInfoService.getIpInfo(this.searchedIp).subscribe(
-      (res: IPInfo) => {
-        this.result = res;
+    // this.IpInfoService.getIpInfo(this.searchedIp).subscribe(
+    //   (res: IPInfo) => {
+    //     this.result = res;
 
-        if (res.location) {
-          const lat = res.location.lat;
-          const lng = res.location.lng;
-          this.location = [lat, lng];
-        }
-      },
-      (error) => {
-        this.error = error.error.messages;
-        console.log(error);
-      }
-    );
+    //     if (res.location) {
+    //       const lat = res.location.lat;
+    //       const lng = res.location.lng;
+    //       this.location = [lat, lng];
+    //     }
+    //   },
+    //   (error) => {
+    //     this.error = error.error.messages;
+    //   }
+    // );
   }
 
   getIpOrDomain(ipOrDomain?: string) {
     console.log(ipOrDomain);
-    this.searchedIp = ipOrDomain || '';
+
+    this.searchedIp = ipOrDomain ? ipOrDomain : '';
+    console.log(this.searchedIp);
+
+
+    if (this.searchedIp) {
+      this.IpInfoService.getIpInfo(this.searchedIp).subscribe(
+        (res: IPInfo) => {
+          this.result = res;
+
+          if (res.location) {
+            const lat = res.location.lat;
+            const lng = res.location.lng;
+            this.location = [lat, lng];
+          }
+        },
+        (error) => {
+          this.error = error.error.messages;
+        }
+      );
+    }
   }
+
+
 }

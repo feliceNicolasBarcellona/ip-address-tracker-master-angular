@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { IPInfo } from 'src/app/model/ip-info';
 
 @Component({
   selector: 'app-coords-details',
@@ -6,6 +7,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./coords-details.component.css']
 })
 export class CoordsDetailsComponent {
-  @Input() label: string | null = null
-  @Input() value: any | null = null
+  @Input() result: IPInfo | null = null
+  @Input() error: string | null = null
 }

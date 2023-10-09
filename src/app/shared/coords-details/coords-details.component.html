@@ -1,4 +1,31 @@
-<div class="coords-details">
-  <p class="label">{{label}}</p>
-  <p class="value">{{value}}</p>
+<div class="coords-container">
+  <ul>
+    <li>
+      <p class="label">IP Address</p>
+      <p *ngIf="!result && !error" class="loading">Loading...</p>
+      <p *ngIf="!result && error">{{""}}</p>
+      <p *ngIf="result" class="value">{{ result.ip }}</p>
+    </li>
+    <li>
+      <p class="label">Location</p>
+      <p *ngIf="!result && !error" class="loading">Loading...</p>
+      <p *ngIf="!result && error">{{""}}</p>
+      <p *ngIf="result" class="value">
+        {{ result.location.city }}, {{ result.location.country }}
+        {{ result.location.region }}
+      </p>
+    </li>
+    <li>
+      <p class="label">Timezone</p>
+      <p *ngIf="!result && !error" class="loading">Loading...</p>
+      <p *ngIf="!result && error">{{""}}</p>
+      <p *ngIf="result" class="value">UTC {{ result.location.timezone }}</p>
+    </li>
+    <li>
+      <p class="label">Isp</p>
+      <p *ngIf="!result && !error" class="loading">Loading...</p>
+      <p *ngIf="!result && error">{{""}}</p>
+      <p *ngIf="result" class="value">{{ result.isp }}</p>
+    </li>
+  </ul>
 </div>
