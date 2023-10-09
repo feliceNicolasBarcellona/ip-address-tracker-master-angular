@@ -14,11 +14,18 @@
   display: flex;
   list-style-type: none;
   height: 100%;
+  padding: 36px 0 0 0;
 }
 
 .coords-container ul li {
   width: 25%;
-  padding: 37px 52px 37px 32px;
+  height: 75px;
+  border-right: 1px solid hsl(0, 0%, 59%);
+  padding: 0px 52px 37px 32px;
+}
+
+.coords-container ul li:last-child {
+  border-right: none;
 }
 
 .label {
@@ -58,6 +65,7 @@
   .coords-container ul li {
     padding: 0;
     width: 100%;
+    border: none;
   }
 
   .label {

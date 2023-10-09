@@ -8,7 +8,7 @@ import { IpInfoService } from './core/ip-info.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  zoom: number = 20;
+  zoom: number = 17;
   location: number[] = [0, 0];
   ipOrDomain: string | null = '';
   searchedIp: string = '';
@@ -19,20 +19,20 @@ export class AppComponent implements OnInit {
   constructor(private IpInfoService: IpInfoService) {}
 
   ngOnInit() {
-    // this.IpInfoService.getIpInfo(this.searchedIp).subscribe(
-    //   (res: IPInfo) => {
-    //     this.result = res;
+    this.IpInfoService.getIpInfo(this.searchedIp).subscribe(
+      (res: IPInfo) => {
+        this.result = res;
 
-    //     if (res.location) {
-    //       const lat = res.location.lat;
-    //       const lng = res.location.lng;
-    //       this.location = [lat, lng];
-    //     }
-    //   },
-    //   (error) => {
-    //     this.error = error.error.messages;
-    //   }
-    // );
+        if (res.location) {
+          const lat = res.location.lat;
+          const lng = res.location.lng;
+          this.location = [lat, lng];
+        }
+      },
+      (error) => {
+        this.error = error.error.messages;
+      }
+    );
   }
 
   getIpOrDomain(ipOrDomain?: string) {
