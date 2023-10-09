@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   location: number[] = [0, 0];
   ipOrDomain: string | null = '';
   searchedIp: string = '';
+  error: string | null = null
 
   result: IPInfo | null = null;
 
@@ -29,7 +30,8 @@ export class AppComponent implements OnInit {
         }
       },
       (error) => {
-        console.error('Errore nella chiamata HTTP', error);
+        this.error = error.error.messages;
+        console.log(error);
       }
     );
   }

@@ -7,12 +7,14 @@
     <ul>
       <li>
         <p class="label">IP Address</p>
-        <p *ngIf="!result" class="loading">Loading...</p>
+        <p *ngIf="!result && !error" class="loading">Loading...</p>
+        <p *ngIf="!result && error">{{""}}</p>
         <p *ngIf="result" class="value">{{ result.ip }}</p>
       </li>
       <li>
         <p class="label">Location</p>
-        <p *ngIf="!result" class="loading">Loading...</p>
+        <p *ngIf="!result && !error" class="loading">Loading...</p>
+        <p *ngIf="!result && error">{{""}}</p>
         <p *ngIf="result" class="value">
           {{ result.location.city }}, {{ result.location.country }}
           {{ result.location.postalCode }}
@@ -20,18 +22,22 @@
       </li>
       <li>
         <p class="label">Timezone</p>
-        <p *ngIf="!result" class="loading">Loading...</p>
+        <p *ngIf="!result && !error" class="loading">Loading...</p>
+        <p *ngIf="!result && error">{{""}}</p>
         <p *ngIf="result" class="value">UTC {{ result.location.timezone }}</p>
       </li>
       <li>
         <p class="label">Isp</p>
-        <p *ngIf="!result" class="loading">Loading...</p>
+        <p *ngIf="!result && !error" class="loading">Loading...</p>
+        <p *ngIf="!result && error">{{""}}</p>
         <p *ngIf="result" class="value">{{ result.isp }}</p>
       </li>
     </ul>
   </div>
   <div class="map-container">
-    <app-map [coords]="location" [zoom]="zoom"></app-map>
+    <p *ngIf="!result && !error" class="loading">Loading...</p>
+    <p *ngIf="!result && error" class="httpError">{{error}}</p>
+    <app-map *ngIf="result && !error" [coords]="location" [zoom]="zoom"></app-map>
   </div>
 </main>
 <footer>
