@@ -4,27 +4,35 @@
     <app-search-bar (search)="getIpOrDomain($event)"></app-search-bar>
   </div>
   <div class="coords-container">
-    <app-coords-details
-      label="IP Address"
-      [value]="result?.ip"
-    ></app-coords-details>
-    <app-coords-details
-      label="Location"
-      [value]="
-        result?.location?.city +
-        ', ' +
-        result?.location?.country +
-        ' ' +
-        result?.location?.postalCode
-      "
-    ></app-coords-details>
-    <app-coords-details
-      label="Timezone"
-      [value]="'UTC ' + result?.location?.timezone"
-    ></app-coords-details>
-    <app-coords-details label="ISP" [value]="result?.isp"></app-coords-details>
+    <ul>
+      <li>
+        <p class="label">IP Address</p>
+        <p *ngIf="!result" class="loading">Loading...</p>
+        <p *ngIf="result" class="value">{{ result.ip }}</p>
+      </li>
+      <li>
+        <p class="label">Location</p>
+        <p *ngIf="!result" class="loading">Loading...</p>
+        <p *ngIf="result" class="value">
+          {{ result.location.city }}, {{ result.location.country }}
+          {{ result.location.postalCode }}
+        </p>
+      </li>
+      <li>
+        <p class="label">Timezone</p>
+        <p *ngIf="!result" class="loading">Loading...</p>
+        <p *ngIf="result" class="value">UTC {{ result.location.timezone }}</p>
+      </li>
+      <li>
+        <p class="label">Isp</p>
+        <p *ngIf="!result" class="loading">Loading...</p>
+        <p *ngIf="result" class="value">{{ result.isp }}</p>
+      </li>
+    </ul>
   </div>
-  <app-map [coords]="location" [zoom]="zoom"></app-map>
+  <div class="map-container">
+    <app-map [coords]="location" [zoom]="zoom"></app-map>
+  </div>
 </main>
 <footer>
   <p class="attribution">

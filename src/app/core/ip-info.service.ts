@@ -1,18 +1,20 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IPInfo } from '../model/ip-info';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class IpInfoService {
-  private apiUrl: string = 'https://geo.ipify.org/api/v1?';
-  private apiKey: string = 'at_kOBZFoUBmJC4XlmS1ewwqd5vKvTuz';
+  private apiUrl: string = environment.apiUrl;
+  private apiKey: string = environment.apiKey;
 
   constructor(private http: HttpClient) {}
 
-  getIpInfo(): Observable<IPInfo> {
-    return this.http.get<IPInfo>('https://geo.ipify.org/api/v1?apiKey=at_kOBZFoUBmJC4XlmS1ewwqd5vKvTuz&ipAddress=');
+  getIpInfo(ipAddress: string): Observable<IPInfo> {
+    const params = new HttpParams({ fromObject: { apiKey: this.apiKey, ipAddress: ipAddress}});
+    return this.http.get<IPInfo>(`${this.apiUrl}`, {params});
   }
 }

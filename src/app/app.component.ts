@@ -11,13 +11,14 @@ export class AppComponent implements OnInit {
   zoom: number = 20;
   location: number[] = [0, 0];
   ipOrDomain: string | null = '';
+  searchedIp: string = '';
 
   result: IPInfo | null = null;
 
   constructor(private IpInfoService: IpInfoService) {}
 
   ngOnInit() {
-    this.IpInfoService.getIpInfo().subscribe(
+    this.IpInfoService.getIpInfo(this.searchedIp).subscribe(
       (res: IPInfo) => {
         this.result = res;
 
@@ -33,7 +34,8 @@ export class AppComponent implements OnInit {
     );
   }
 
-  getIpOrDomain(ipOrDomain: string) {
+  getIpOrDomain(ipOrDomain?: string) {
     console.log(ipOrDomain);
+    this.searchedIp = ipOrDomain || '';
   }
 }
